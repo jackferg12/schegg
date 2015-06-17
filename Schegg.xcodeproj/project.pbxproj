@@ -17,6 +17,10 @@
 		935F6A5D1B31197E0010DCB3 /* ScheggTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F6A5C1B31197E0010DCB3 /* ScheggTests.swift */; };
 		937462A41B312B990082C30F /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937462A31B312B990082C30F /* API.swift */; };
 		937462A71B312DA60082C30F /* RoomLists.xml in Resources */ = {isa = PBXBuildFile; fileRef = 937462A61B312DA60082C30F /* RoomLists.xml */; };
+		93D301C81B31D978004A1A0A /* Rooms.xml in Resources */ = {isa = PBXBuildFile; fileRef = 93D301C71B31D978004A1A0A /* Rooms.xml */; };
+		93D301CA1B31D9AF004A1A0A /* Availability.xml in Resources */ = {isa = PBXBuildFile; fileRef = 93D301C91B31D9AF004A1A0A /* Availability.xml */; };
+		93D301CC1B31DA06004A1A0A /* Book.xml in Resources */ = {isa = PBXBuildFile; fileRef = 93D301CB1B31DA06004A1A0A /* Book.xml */; };
+		93D301CE1B31DA35004A1A0A /* Delete.xml in Resources */ = {isa = PBXBuildFile; fileRef = 93D301CD1B31DA35004A1A0A /* Delete.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +50,10 @@
 		937462A11B311DED0082C30F /* Schegg-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Schegg-Bridging-Header.h"; sourceTree = "<group>"; };
 		937462A31B312B990082C30F /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		937462A61B312DA60082C30F /* RoomLists.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RoomLists.xml; sourceTree = "<group>"; };
+		93D301C71B31D978004A1A0A /* Rooms.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Rooms.xml; sourceTree = "<group>"; };
+		93D301C91B31D9AF004A1A0A /* Availability.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Availability.xml; sourceTree = "<group>"; };
+		93D301CB1B31DA06004A1A0A /* Book.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Book.xml; sourceTree = "<group>"; };
+		93D301CD1B31DA35004A1A0A /* Delete.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Delete.xml; sourceTree = "<group>"; };
 		C0E8F1EB12F1A185445C290A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,8 +151,12 @@
 			isa = PBXGroup;
 			children = (
 				937462A61B312DA60082C30F /* RoomLists.xml */,
+				93D301C71B31D978004A1A0A /* Rooms.xml */,
+				93D301C91B31D9AF004A1A0A /* Availability.xml */,
+				93D301CB1B31DA06004A1A0A /* Book.xml */,
+				93D301CD1B31DA35004A1A0A /* Delete.xml */,
 			);
-			name = Methods;
+			path = Methods;
 			sourceTree = "<group>";
 		};
 		DDDF1751E2E0E00B2EE62998 /* Frameworks */ = {
@@ -240,8 +252,12 @@
 			files = (
 				937462A71B312DA60082C30F /* RoomLists.xml in Resources */,
 				935F6A4C1B31197E0010DCB3 /* Main.storyboard in Resources */,
+				93D301CC1B31DA06004A1A0A /* Book.xml in Resources */,
+				93D301CA1B31D9AF004A1A0A /* Availability.xml in Resources */,
+				93D301CE1B31DA35004A1A0A /* Delete.xml in Resources */,
 				935F6A511B31197E0010DCB3 /* LaunchScreen.xib in Resources */,
 				935F6A4E1B31197E0010DCB3 /* Images.xcassets in Resources */,
+				93D301C81B31D978004A1A0A /* Rooms.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

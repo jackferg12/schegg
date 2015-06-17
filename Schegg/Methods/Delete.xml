@@ -1,0 +1,31 @@
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:t="http://schemas.microsoft.com/exchange/services/2006/types">
+    <soap:Body>
+        <CreateItem xmlns="http://schemas.microsoft.com/exchange/services/2006/messages"
+            xmlns:t="http://schemas.microsoft.com/exchange/services/2006/types"
+            SendMeetingInvitations="SendToAllAndSaveCopy" >
+            <SavedItemFolderId>
+                <t:DistinguishedFolderId Id="calendar"/>
+            </SavedItemFolderId>
+            <Items>
+                <t:CalendarItem xmlns="http://schemas.microsoft.com/exchange/services/2006/types">
+                    <Subject>Planning Meeting</Subject>
+                    <Body BodyType="Text">Hack ath on</Body>
+                    <Start>2015-06-16T18:00:00</Start>
+                    <End>2015-06-16T18:30:00</End>
+                    <IsAllDayEvent>false</IsAllDayEvent>
+                    <Location>Miss Honey Conference Room</Location>
+                    <RequiredAttendees>
+                        <Attendee>
+                            <Mailbox>
+                                <EmailAddress>cr-misshoney@chegg.com</EmailAddress>
+                            </Mailbox>
+                        </Attendee>
+                    </RequiredAttendees>
+                </t:CalendarItem>
+            </Items>
+        </CreateItem>
+    </soap:Body>
+</soap:Envelope>
