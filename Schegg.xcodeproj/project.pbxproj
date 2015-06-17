@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		765E8C1494CCDD710E6748F4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3400F1044262080D77E677 /* libPods.a */; };
 		935F6A451B31197E0010DCB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F6A441B31197E0010DCB3 /* AppDelegate.swift */; };
 		935F6A471B31197E0010DCB3 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F6A461B31197E0010DCB3 /* FirstViewController.swift */; };
 		935F6A491B31197E0010DCB3 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F6A481B31197E0010DCB3 /* SecondViewController.swift */; };
@@ -14,6 +15,8 @@
 		935F6A4E1B31197E0010DCB3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935F6A4D1B31197E0010DCB3 /* Images.xcassets */; };
 		935F6A511B31197E0010DCB3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 935F6A4F1B31197E0010DCB3 /* LaunchScreen.xib */; };
 		935F6A5D1B31197E0010DCB3 /* ScheggTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F6A5C1B31197E0010DCB3 /* ScheggTests.swift */; };
+		937462A41B312B990082C30F /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937462A31B312B990082C30F /* API.swift */; };
+		937462A71B312DA60082C30F /* RoomLists.xml in Resources */ = {isa = PBXBuildFile; fileRef = 937462A61B312DA60082C30F /* RoomLists.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		30D8B9D211472A3C0278F96E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		5E3400F1044262080D77E677 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		935F6A3F1B31197E0010DCB3 /* Schegg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schegg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		935F6A431B31197E0010DCB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		935F6A441B31197E0010DCB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +43,10 @@
 		935F6A561B31197E0010DCB3 /* ScheggTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScheggTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		935F6A5B1B31197E0010DCB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		935F6A5C1B31197E0010DCB3 /* ScheggTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheggTests.swift; sourceTree = "<group>"; };
+		937462A11B311DED0082C30F /* Schegg-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Schegg-Bridging-Header.h"; sourceTree = "<group>"; };
+		937462A31B312B990082C30F /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		937462A61B312DA60082C30F /* RoomLists.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RoomLists.xml; sourceTree = "<group>"; };
+		C0E8F1EB12F1A185445C290A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				765E8C1494CCDD710E6748F4 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,12 +68,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B2FA9CF39C6D3D0188E4249 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C0E8F1EB12F1A185445C290A /* Pods.debug.xcconfig */,
+				30D8B9D211472A3C0278F96E /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		935F6A361B31197E0010DCB3 = {
 			isa = PBXGroup;
 			children = (
 				935F6A411B31197E0010DCB3 /* Schegg */,
 				935F6A591B31197E0010DCB3 /* ScheggTests */,
 				935F6A401B31197E0010DCB3 /* Products */,
+				2B2FA9CF39C6D3D0188E4249 /* Pods */,
+				DDDF1751E2E0E00B2EE62998 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +100,7 @@
 		935F6A411B31197E0010DCB3 /* Schegg */ = {
 			isa = PBXGroup;
 			children = (
+				937462A51B312C9C0082C30F /* Methods */,
 				935F6A441B31197E0010DCB3 /* AppDelegate.swift */,
 				935F6A461B31197E0010DCB3 /* FirstViewController.swift */,
 				935F6A481B31197E0010DCB3 /* SecondViewController.swift */,
@@ -86,6 +108,8 @@
 				935F6A4D1B31197E0010DCB3 /* Images.xcassets */,
 				935F6A4F1B31197E0010DCB3 /* LaunchScreen.xib */,
 				935F6A421B31197E0010DCB3 /* Supporting Files */,
+				937462A11B311DED0082C30F /* Schegg-Bridging-Header.h */,
+				937462A31B312B990082C30F /* API.swift */,
 			);
 			path = Schegg;
 			sourceTree = "<group>";
@@ -115,6 +139,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		937462A51B312C9C0082C30F /* Methods */ = {
+			isa = PBXGroup;
+			children = (
+				937462A61B312DA60082C30F /* RoomLists.xml */,
+			);
+			name = Methods;
+			sourceTree = "<group>";
+		};
+		DDDF1751E2E0E00B2EE62998 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5E3400F1044262080D77E677 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -122,9 +162,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 935F6A601B31197E0010DCB3 /* Build configuration list for PBXNativeTarget "Schegg" */;
 			buildPhases = (
+				A8F5ADA487687EA1C4CC3B77 /* Check Pods Manifest.lock */,
 				935F6A3B1B31197E0010DCB3 /* Sources */,
 				935F6A3C1B31197E0010DCB3 /* Frameworks */,
 				935F6A3D1B31197E0010DCB3 /* Resources */,
+				96A694DBAAB5F7EE340954B7 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -159,6 +201,7 @@
 		935F6A371B31197E0010DCB3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Chegg, Inc.";
 				TargetAttributes = {
@@ -195,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				937462A71B312DA60082C30F /* RoomLists.xml in Resources */,
 				935F6A4C1B31197E0010DCB3 /* Main.storyboard in Resources */,
 				935F6A511B31197E0010DCB3 /* LaunchScreen.xib in Resources */,
 				935F6A4E1B31197E0010DCB3 /* Images.xcassets in Resources */,
@@ -210,6 +254,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		96A694DBAAB5F7EE340954B7 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A8F5ADA487687EA1C4CC3B77 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		935F6A3B1B31197E0010DCB3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -217,6 +294,7 @@
 			files = (
 				935F6A491B31197E0010DCB3 /* SecondViewController.swift in Sources */,
 				935F6A451B31197E0010DCB3 /* AppDelegate.swift in Sources */,
+				937462A41B312B990082C30F /* API.swift in Sources */,
 				935F6A471B31197E0010DCB3 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,21 +420,25 @@
 		};
 		935F6A611B31197E0010DCB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0E8F1EB12F1A185445C290A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Schegg/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Schegg/Schegg-Bridging-Header.h";
 			};
 			name = Debug;
 		};
 		935F6A621B31197E0010DCB3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30D8B9D211472A3C0278F96E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Schegg/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Schegg/Schegg-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -413,6 +495,7 @@
 				935F6A621B31197E0010DCB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		935F6A631B31197E0010DCB3 /* Build configuration list for PBXNativeTarget "ScheggTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +504,7 @@
 				935F6A651B31197E0010DCB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

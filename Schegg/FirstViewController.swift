@@ -13,6 +13,15 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        OutlookAPI.getRoomList { (rooms) in
+            print("rooms: \(rooms)")
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
