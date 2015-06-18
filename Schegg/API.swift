@@ -58,8 +58,6 @@ class API : NSObject, NSURLSessionTaskDelegate, NSXMLParserDelegate {
         task?.resume()
     }
 
-
-
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
         submitCredentials(completionHandler)
     }
@@ -75,7 +73,8 @@ class API : NSObject, NSURLSessionTaskDelegate, NSXMLParserDelegate {
 
     func promptForCredentials (completionHandler:(NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            Authentication.auth({ (email, password) -> Void in
+            let auth = Authentication()
+            auth.auth({ (email, password) -> Void in
                 self.username = email
                 self.password = password
                 self.submitCredentials(completionHandler)
