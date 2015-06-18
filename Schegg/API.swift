@@ -9,95 +9,78 @@
 import Foundation
 let OutlookAPI = API()
 
-enum Element: String {
-    case RoomLists = "RoomLists"
-    case Address = "Address"
-    case Email = "EmailAddress"
-    case Name = "Name"
+class TemplateImporter {
+    var data: NSData?
+    var mData: NSMutableData?
+    init(name: String, mutable: Bool = false) {
+        if let resourceURL = NSBundle.mainBundle().URLForResource(name, withExtension: "xml") {
+            if mutable {
+                mData = NSMutableData(contentsOfURL: resourceURL)
+            } else {
+                data = NSData(contentsOfURL: resourceURL)
+            }
+        }
+    }
 }
 
-struct RoomList {
-    let name: String
-    let email: String
-}
 class API : NSObject, NSURLSessionTaskDelegate, NSXMLParserDelegate {
-    let username = ""
-    let password = ""
+    var username: String?
+    var password: String?
     let url = NSURL(string: "https://outlook.office365.com/EWS/Exchange.asmx")!
     lazy var session: NSURLSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: self, delegateQueue: nil)
-    var rooms: [RoomList]? = nil
-    var currentName: String? = nil
-    var currentEmail: String? = nil
-    var currentElements: [Element] = []
-    func parseXML(data: NSData) {
-        let parser = NSXMLParser(data: data)
-        parser.delegate = self
-        parser.shouldProcessNamespaces = true
-        parser.shouldReportNamespacePrefixes = true
-        parser.parse()
-    }
 
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        switch elementName {
-        case Element.RoomLists.rawValue:
-            currentElements.append(.RoomLists)
-            rooms = []
-        case Element.Address.rawValue:
-            currentElements.append(.Address)
-            currentName = ""
-            currentEmail = ""
-        case Element.Name.rawValue:
-            currentElements.append(.Name)
-        case Element.Email.rawValue:
-            currentElements.append(.Email)
-        default: ()
-        }
-    }
-    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        switch elementName {
-        case Element.Address.rawValue:
-            if let name = currentName, email = currentEmail {
-                rooms?.append(RoomList(name: name, email: email))
-            }
-            currentElements.removeLast()
-        case Element.RoomLists.rawValue, Element.Email.rawValue, Element.Name.rawValue:
-            currentElements.removeLast()
-        default: ()
-        }
-    }
-    func parser(parser: NSXMLParser, foundCharacters string: String) {
-        if let currentElement = currentElements.last {
-            switch currentElement {
-            case .Email:
-                currentEmail? += string
-            case .Name:
-                currentName? += string
-            default: ()
-            }
+    lazy var roomListsTemplate: TemplateImporter = TemplateImporter(name: "RoomLists")
+    lazy var roomsTemplate: TemplateImporter = TemplateImporter(name: "Rooms")
+
+    func getRoomLists (callback: ([RoomList]) -> Void) {
+        if let inputData = roomListsTemplate.data {
+            self.request(inputData, parser: RoomListsParser(), callback: callback)
         }
     }
 
-    func getRoomList (callback: ([RoomList]) -> Void) {
-        if let resourceURL = NSBundle.mainBundle().URLForResource("RoomLists", withExtension: "xml") {
-            let request = NSMutableURLRequest(URL: url)
-            request.HTTPMethod = "POST"
-            request.HTTPBody = NSData(contentsOfURL: resourceURL)
-            request.addValue("text/xml", forHTTPHeaderField: "Content-Type")
-            let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-                if let data = data {
-                    self.parseXML(data)
-                    if let rooms = self.rooms {
-                        callback(rooms)
-                    }
-                }
-            })
-            task?.resume()
+    func getRooms (roomId: String, callback: ([Room]) -> Void) {
+        if let inputData = roomsTemplate.data, inputString = NSString(data: inputData, encoding: NSUTF8StringEncoding) {
+            let transformedString = inputString.stringByReplacingOccurrencesOfString("{{}}", withString: roomId)
+            self.request(transformedString.dataUsingEncoding(NSUTF8StringEncoding)!, parser: RoomsParser(), callback: callback)
         }
     }
+
+    func request<P:Parser> (inputData: NSData, parser: P, callback: (result: P.ResultType) -> Void) {
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.HTTPBody = inputData
+        request.addValue("text/xml", forHTTPHeaderField: "Content-Type")
+        let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
+            if let data = data, result = parser.parse(data) {
+                callback(result: result)
+            }
+        })
+        task?.resume()
+    }
+
+
 
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
-        let credential = NSURLCredential(user: username, password: password, persistence: NSURLCredentialPersistence.ForSession)
-        completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
+        submitCredentials(completionHandler)
+    }
+
+    func submitCredentials(completionHandler:(NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+        if let username = username, password = password {
+            let credential = NSURLCredential(user: username, password: password, persistence: NSURLCredentialPersistence.ForSession)
+            completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
+        } else {
+            promptForCredentials(completionHandler)
+        }
+    }
+
+    func promptForCredentials (completionHandler:(NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            Authentication.auth({ (email, password) -> Void in
+                self.username = email
+                self.password = password
+                self.submitCredentials(completionHandler)
+            })
+        }
     }
 
 }

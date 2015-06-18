@@ -18,8 +18,11 @@ class FirstViewController: UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        OutlookAPI.getRoomList { (rooms) in
-            print("rooms: \(rooms)")
+        OutlookAPI.getRoomLists { (roomLists) in
+            print("roomlists: \(roomLists)")
+        }
+        OutlookAPI.getRooms("SantaClaraConferenceRooms@CHEGG.onmicrosoft.com") { (rooms) -> Void in
+            print("sc rooms: \(rooms)")
         }
 
     }

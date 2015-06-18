@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		765E8C1494CCDD710E6748F4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3400F1044262080D77E677 /* libPods.a */; };
+		934E81AF1B324B7F004C19FD /* Parsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934E81AE1B324B7F004C19FD /* Parsers.swift */; };
+		934E81B11B32850C004C19FD /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934E81B01B32850C004C19FD /* Authentication.swift */; };
 		935F6A451B31197E0010DCB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F6A441B31197E0010DCB3 /* AppDelegate.swift */; };
 		935F6A471B31197E0010DCB3 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F6A461B31197E0010DCB3 /* FirstViewController.swift */; };
 		935F6A491B31197E0010DCB3 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F6A481B31197E0010DCB3 /* SecondViewController.swift */; };
@@ -36,6 +38,8 @@
 /* Begin PBXFileReference section */
 		30D8B9D211472A3C0278F96E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5E3400F1044262080D77E677 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		934E81AE1B324B7F004C19FD /* Parsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parsers.swift; sourceTree = "<group>"; };
+		934E81B01B32850C004C19FD /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		935F6A3F1B31197E0010DCB3 /* Schegg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schegg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		935F6A431B31197E0010DCB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		935F6A441B31197E0010DCB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +122,8 @@
 				935F6A421B31197E0010DCB3 /* Supporting Files */,
 				937462A11B311DED0082C30F /* Schegg-Bridging-Header.h */,
 				937462A31B312B990082C30F /* API.swift */,
+				934E81B01B32850C004C19FD /* Authentication.swift */,
+				934E81AE1B324B7F004C19FD /* Parsers.swift */,
 			);
 			path = Schegg;
 			sourceTree = "<group>";
@@ -311,7 +317,9 @@
 				935F6A491B31197E0010DCB3 /* SecondViewController.swift in Sources */,
 				935F6A451B31197E0010DCB3 /* AppDelegate.swift in Sources */,
 				937462A41B312B990082C30F /* API.swift in Sources */,
+				934E81AF1B324B7F004C19FD /* Parsers.swift in Sources */,
 				935F6A471B31197E0010DCB3 /* FirstViewController.swift in Sources */,
+				934E81B11B32850C004C19FD /* Authentication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

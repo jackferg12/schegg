@@ -9,7 +9,7 @@
     <soap:Body>
         <m:GetRooms>
             <m:RoomList>
-                <t:EmailAddress>{{roomlist}}</t:EmailAddress>
+                <t:EmailAddress>{{}}</t:EmailAddress>
             </m:RoomList>
         </m:GetRooms>
     </soap:Body>
