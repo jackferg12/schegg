@@ -8,11 +8,16 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        OutlookAPI.getRooms("SantaClaraConferenceRooms@CHEGG.onmicrosoft.com") { (rooms) -> Void in
+            print("sc rooms: \(rooms)")
+        }
+
+
     }
 
     override func didReceiveMemoryWarning() {

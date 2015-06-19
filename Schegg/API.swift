@@ -52,32 +52,39 @@ class API : NSObject, NSURLSessionTaskDelegate, NSXMLParserDelegate {
         request.addValue("text/xml", forHTTPHeaderField: "Content-Type")
         let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
             if let data = data, result = parser.parse(data) {
-                callback(result: result)
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    callback(result: result)
+                })
             }
         })
         task?.resume()
     }
 
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
-        submitCredentials(completionHandler)
-    }
-
-    func submitCredentials(completionHandler:(NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
-        if let username = username, password = password {
-            let credential = NSURLCredential(user: username, password: password, persistence: NSURLCredentialPersistence.ForSession)
+        if let credential = NSURLCredentialStorage.sharedCredentialStorage().defaultCredentialForProtectionSpace(challenge.protectionSpace) {
             completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
         } else {
-            promptForCredentials(completionHandler)
+            submitCredentials(challenge, completionHandler:completionHandler)
         }
     }
 
-    func promptForCredentials (completionHandler:(NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+    func submitCredentials(challenge: NSURLAuthenticationChallenge, completionHandler:(NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+        if let username = username, password = password {
+            let credential = NSURLCredential(user: username, password: password, persistence: NSURLCredentialPersistence.Permanent)
+            NSURLCredentialStorage.sharedCredentialStorage().setDefaultCredential(credential, forProtectionSpace: challenge.protectionSpace)
+            completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
+        } else {
+            promptForCredentials(challenge, completionHandler: completionHandler)
+        }
+    }
+
+    func promptForCredentials (challenge: NSURLAuthenticationChallenge, completionHandler:(NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             let auth = Authentication()
             auth.auth({ (email, password) -> Void in
                 self.username = email
                 self.password = password
-                self.submitCredentials(completionHandler)
+                self.submitCredentials(challenge, completionHandler: completionHandler)
             })
         }
     }
