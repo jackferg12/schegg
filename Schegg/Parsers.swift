@@ -23,18 +23,8 @@ enum Element: String {
     case Name = "Name"
 }
 
-struct RoomList {
-    let name: String
-    let email: String
-}
-
-struct Room {
-    let name: String
-    let email: String
-}
-
 class RoomListsParser: NSObject, NSXMLParserDelegate, Parser {
-    var rooms: [RoomList]? = nil
+    var roomLists: [RoomList]? = nil
     var currentName: String? = nil
     var currentEmail: String? = nil
     var currentElements: [Element] = []
@@ -44,14 +34,14 @@ class RoomListsParser: NSObject, NSXMLParserDelegate, Parser {
         parser.delegate = self
         parser.shouldProcessNamespaces = true
         parser.parse()
-        return rooms
+        return roomLists
     }
 
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
         switch elementName {
         case Element.RoomLists.rawValue:
             currentElements.append(.RoomLists)
-            rooms = []
+            roomLists = []
         case Element.Address.rawValue:
             currentElements.append(.Address)
             currentName = ""
@@ -67,7 +57,7 @@ class RoomListsParser: NSObject, NSXMLParserDelegate, Parser {
         switch elementName {
         case Element.Address.rawValue:
             if let name = currentName, email = currentEmail {
-                rooms?.append(RoomList(name: name, email: email))
+                roomLists?.append(RoomList(name: name, email: email))
             }
             currentElements.removeLast()
         case Element.RoomLists.rawValue, Element.Email.rawValue, Element.Name.rawValue:

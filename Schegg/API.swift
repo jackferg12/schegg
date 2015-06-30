@@ -31,6 +31,7 @@ class API : NSObject, NSURLSessionTaskDelegate, NSXMLParserDelegate {
 
     lazy var roomListsTemplate: TemplateImporter = TemplateImporter(name: "RoomLists")
     lazy var roomsTemplate: TemplateImporter = TemplateImporter(name: "Rooms")
+    lazy var availableTemplate: TemplateImporter = TemplateImporter(name: "Availability")
 
     func getRoomLists (callback: ([RoomList]) -> Void) {
         if let inputData = roomListsTemplate.data {
@@ -38,10 +39,17 @@ class API : NSObject, NSURLSessionTaskDelegate, NSXMLParserDelegate {
         }
     }
 
-    func getRooms (roomId: String, callback: ([Room]) -> Void) {
+    func getRooms (roomListId: String, callback: ([Room]) -> Void) {
         if let inputData = roomsTemplate.data, inputString = NSString(data: inputData, encoding: NSUTF8StringEncoding) {
-            let transformedString = inputString.stringByReplacingOccurrencesOfString("{{}}", withString: roomId)
+            let transformedString = inputString.stringByReplacingOccurrencesOfString("{{}}", withString: roomListId)
             self.request(transformedString.dataUsingEncoding(NSUTF8StringEncoding)!, parser: RoomsParser(), callback: callback)
+        }
+    }
+
+    func getAvailability (roomIds: [String], start:NSDate, end:NSDate, callback: (([Availability]) -> Void)) {
+        if let inputData = roomsTemplate.data, inputString = NSString(data: inputData, encoding: NSUTF8StringEncoding) {
+//            let transformedString = inputString.stringByReplacingOccurrencesOfString("{{}}", withString: roomIds[0])
+//            self.request(transformedString.dataUsingEncoding(NSUTF8StringEncoding)!, parser: RoomsParser(), callback: callback)
         }
     }
 

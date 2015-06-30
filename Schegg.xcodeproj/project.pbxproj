@@ -23,6 +23,7 @@
 		93D301CA1B31D9AF004A1A0A /* Availability.xml in Resources */ = {isa = PBXBuildFile; fileRef = 93D301C91B31D9AF004A1A0A /* Availability.xml */; };
 		93D301CC1B31DA06004A1A0A /* Book.xml in Resources */ = {isa = PBXBuildFile; fileRef = 93D301CB1B31DA06004A1A0A /* Book.xml */; };
 		93D301CE1B31DA35004A1A0A /* Delete.xml in Resources */ = {isa = PBXBuildFile; fileRef = 93D301CD1B31DA35004A1A0A /* Delete.xml */; };
+		93EF55121B4325A600D39BD8 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF55111B4325A600D39BD8 /* Database.swift */; };
 		93FCBDCD1B339FA700DD749E /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FCBDCC1B339FA700DD749E /* RoomsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		93D301C91B31D9AF004A1A0A /* Availability.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Availability.xml; sourceTree = "<group>"; };
 		93D301CB1B31DA06004A1A0A /* Book.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Book.xml; sourceTree = "<group>"; };
 		93D301CD1B31DA35004A1A0A /* Delete.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Delete.xml; sourceTree = "<group>"; };
+		93EF55111B4325A600D39BD8 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		93FCBDCC1B339FA700DD749E /* RoomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
 		C0E8F1EB12F1A185445C290A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,6 +129,7 @@
 				934E81B01B32850C004C19FD /* Authentication.swift */,
 				934E81AE1B324B7F004C19FD /* Parsers.swift */,
 				93FCBDCC1B339FA700DD749E /* RoomsViewController.swift */,
+				93EF55111B4325A600D39BD8 /* Database.swift */,
 			);
 			path = Schegg;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				93FCBDCD1B339FA700DD749E /* RoomsViewController.swift in Sources */,
 				934E81AF1B324B7F004C19FD /* Parsers.swift in Sources */,
 				935F6A471B31197E0010DCB3 /* RoomListsViewController.swift in Sources */,
+				93EF55121B4325A600D39BD8 /* Database.swift in Sources */,
 				934E81B11B32850C004C19FD /* Authentication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
