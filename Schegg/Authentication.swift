@@ -32,7 +32,9 @@ class Authentication: NSObject, UIAlertViewDelegate {
             popup.dismissViewControllerAnimated(true, completion: nil)
         }))
         popup.addAction(UIAlertAction(title: signinButtonTitle, style: UIAlertActionStyle.Default, handler: { (action) -> Void in
-            completionBlock(email: popup.textFields![0].text!, password: popup.textFields![1].text!)
+            let email = (popup.textFields![0] as! UITextField).text
+            let password = (popup.textFields![1] as! UITextField).text
+            completionBlock(email: email, password:password)
             popup.dismissViewControllerAnimated(true, completion: nil)
         }))
         UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(popup, animated: true, completion: nil)

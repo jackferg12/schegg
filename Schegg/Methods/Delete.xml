@@ -23,7 +23,7 @@
                                 <EmailAddress>cr-misshoney@chegg.com</EmailAddress>
                             </Mailbox>
                         </Attendee>
-                    </RequiredAttendees>
+                    </RequiredAttendlees>
                 </t:CalendarItem>
             </Items>
         </CreateItem>

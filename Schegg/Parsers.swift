@@ -47,7 +47,7 @@ class RoomListsParser: NSObject, NSXMLParserDelegate, Parser {
         return rooms
     }
 
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
         switch elementName {
         case Element.RoomLists.rawValue:
             currentElements.append(.RoomLists)
@@ -76,13 +76,13 @@ class RoomListsParser: NSObject, NSXMLParserDelegate, Parser {
         }
     }
 
-    func parser(parser: NSXMLParser, foundCharacters string: String) {
+    func parser(parser: NSXMLParser, foundCharacters string: String?) {
         if let currentElement = currentElements.last {
             switch currentElement {
             case .Email:
-                currentEmail? += string
+                currentEmail? += string!
             case .Name:
-                currentName? += string
+                currentName? += string!
             default: ()
             }
         }
@@ -102,8 +102,7 @@ class RoomsParser: NSObject, NSXMLParserDelegate, Parser {
         parser.parse()
         return rooms
     }
-
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
         switch elementName {
         case Element.Rooms.rawValue:
             currentElements.append(.Rooms)
@@ -119,6 +118,7 @@ class RoomsParser: NSObject, NSXMLParserDelegate, Parser {
         default: ()
         }
     }
+
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         switch elementName {
         case Element.Room.rawValue:
@@ -132,13 +132,13 @@ class RoomsParser: NSObject, NSXMLParserDelegate, Parser {
         }
     }
 
-    func parser(parser: NSXMLParser, foundCharacters string: String) {
+    func parser(parser: NSXMLParser, foundCharacters string: String?) {
         if let currentElement = currentElements.last {
             switch currentElement {
             case .Email:
-                currentEmail? += string
+                currentEmail? += string!
             case .Name:
-                currentName? += string
+                currentName? += string!
             default: ()
             }
         }

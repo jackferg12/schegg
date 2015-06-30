@@ -48,7 +48,7 @@ class RoomListsViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell
-        if let aCell = tableView.dequeueReusableCellWithIdentifier("Cell") {
+        if let aCell = tableView.dequeueReusableCellWithIdentifier("Cell") as? UITableViewCell {
             cell = aCell
         } else {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")

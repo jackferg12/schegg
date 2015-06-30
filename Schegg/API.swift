@@ -57,10 +57,10 @@ class API : NSObject, NSURLSessionTaskDelegate, NSXMLParserDelegate {
                 })
             }
         })
-        task?.resume()
+        task.resume()
     }
 
-    func URLSession(session: NSURLSession, task: NSURLSessionTask, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+    func URLSession(session: NSURLSession, task: NSURLSessionTask, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
         if let credential = NSURLCredentialStorage.sharedCredentialStorage().defaultCredentialForProtectionSpace(challenge.protectionSpace) {
             completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
         } else {
@@ -68,7 +68,7 @@ class API : NSObject, NSURLSessionTaskDelegate, NSXMLParserDelegate {
         }
     }
 
-    func submitCredentials(challenge: NSURLAuthenticationChallenge, completionHandler:(NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+    func submitCredentials(challenge: NSURLAuthenticationChallenge, completionHandler:(NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
         if let username = username, password = password {
             let credential = NSURLCredential(user: username, password: password, persistence: NSURLCredentialPersistence.Permanent)
             NSURLCredentialStorage.sharedCredentialStorage().setDefaultCredential(credential, forProtectionSpace: challenge.protectionSpace)
@@ -78,7 +78,7 @@ class API : NSObject, NSURLSessionTaskDelegate, NSXMLParserDelegate {
         }
     }
 
-    func promptForCredentials (challenge: NSURLAuthenticationChallenge, completionHandler:(NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+    func promptForCredentials (challenge: NSURLAuthenticationChallenge, completionHandler:(NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             let auth = Authentication()
             auth.auth({ (email, password) -> Void in
