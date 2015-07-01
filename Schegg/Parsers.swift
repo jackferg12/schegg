@@ -21,6 +21,7 @@ enum Element: String {
     case Id = "Id"
     case Email = "EmailAddress"
     case Name = "Name"
+    case Available = "MergedFreeBusy"
 }
 
 class RoomListsParser: NSObject, NSXMLParserDelegate, Parser {
@@ -129,6 +130,59 @@ class RoomsParser: NSObject, NSXMLParserDelegate, Parser {
                 currentEmail? += string!
             case .Name:
                 currentName? += string!
+            default: ()
+            }
+        }
+    }
+}
+
+class AvailabilityParser: NSObject, NSXMLParserDelegate, Parser {
+    var currentAvailability: String? = ""
+    var decodedAvailability: [Bool]? = []
+    var availabilitys: [[Bool]]? = []
+    var currentElements: [Element] = []
+    
+    func parse(data: NSData) -> [[Bool]]? {
+        let parser = NSXMLParser(data: data)
+        parser.delegate = self
+        parser.shouldProcessNamespaces = true
+        parser.parse()
+        return availabilitys
+    }
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
+        switch elementName {
+        case Element.Available.rawValue:
+            currentElements.append(.Available)
+        default: ()
+        }
+    }
+    
+    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        switch elementName {
+        case Element.Available.rawValue:
+            if let currentAvailability = currentAvailability{
+                for c in currentAvailability{
+                    if(c == "0"){
+                        decodedAvailability?.append(true)
+                    }else{
+                        decodedAvailability?.append(false)
+                    }
+                }
+                availabilitys?.append(decodedAvailability!)
+            }
+            currentAvailability = ""
+            currentElements.removeLast()
+        case Element.Rooms.rawValue, Element.Email.rawValue, Element.Name.rawValue:
+            currentElements.removeLast()
+        default: ()
+        }
+    }
+    
+    func parser(parser: NSXMLParser, foundCharacters string: String?) {
+        if let currentElement = currentElements.last {
+            switch currentElement {
+            case .Available:
+                currentAvailability? += string!
             default: ()
             }
         }
